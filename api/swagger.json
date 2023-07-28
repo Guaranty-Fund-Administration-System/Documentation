@@ -1,0 +1,839 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "license": {
+      "name": "Apache License 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "contact": {
+      "name": "GFAS",
+      "email": "api@gfas.app",
+      "url": "https://docs.gfas.app"
+    },
+    "title": "Guaranty Fund Administration System (GFAS) API",
+    "version": "20230731_000000"
+  },
+  "servers": [
+    {
+      "url": "https://api.dev.gfas.app"
+    },
+    {
+      "url": "https://api.dev.gfas.app.localhost:9999"
+    }
+  ],
+  "tags": [
+    {
+      "name": "claims",
+      "description": "Claims"
+    }
+  ],
+  "paths": {
+    "/claims": {
+      "get": {
+        "operationId": "getClaims",
+        "tags": [
+          "claims"
+        ],
+        "summary": "Search claims",
+        "parameters": [
+          {
+            "name": "claimId",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The claim ID to retrieve"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "The expand query parameter requests embedded resources be added to a response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "style": "simple",
+            "explode": true
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "description": "The fields to sort",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "style": "simple",
+            "explode": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HAL_PaginatedResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Claim"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/claims/{claimId}": {
+      "get": {
+        "operationId": "getClaim",
+        "tags": [
+          "claims"
+        ],
+        "summary": "Retrieve claim",
+        "parameters": [
+          {
+            "name": "claimId",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The claim ID to retrieve"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "The expand query parameter requests embedded resources be added to a response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "insured"
+                ],
+                "minItems": 1
+              },
+              "style": "simple",
+              "explode": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HAL_Response"
+                },
+                "example": {
+                  "_links": {},
+                  "_embedded": {},
+                  "id": 123456
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Claim"
+                },
+                "example": {
+                  "id": 123456
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/claims/{claimId}/defensecounsels": {
+      "paths": {
+        "/claims/{claimId}/insureds": {
+          "get": {
+            "operationId": "getInsureds",
+            "tags": [
+              "Claims"
+            ],
+            "summary": "Retrieve insureds for a claim",
+            "parameters": [
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "claimId",
+                "description": "The claim ID to retrieve",
+                "required": true
+              }
+            ]
+          }
+        },
+        "/claims/{claimId}/insureds/{insuredId}": {
+          "get": {
+            "operationId": "getInsured",
+            "tags": [
+              "Claims"
+            ],
+            "summary": "Retrieve an insured for a claim",
+            "parameters": [
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "claimId",
+                "description": "The claim ID to retrieve",
+                "required": true
+              },
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "insuredId",
+                "description": "The insured ID to retrieve",
+                "required": true
+              }
+            ]
+          }
+        },
+        "/claims/{claimId}/defensecounsels": {
+          "get": {
+            "operationId": "getDefenseCounsels",
+            "tags": [
+              "Claims"
+            ],
+            "summary": "Retrieve defense counsels for a claim",
+            "parameters": [
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "claimId",
+                "description": "The claim ID to retrieve",
+                "required": true
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "success"
+              }
+            }
+          }
+        },
+        "/claims/{claimId}/defensecounsels/{defenseCounselId}": {
+          "get": {
+            "operationId": "getDefenseCounsel",
+            "tags": [
+              "Claims"
+            ],
+            "summary": "Retrieve a defense counsel for a claim",
+            "parameters": [
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "claimId",
+                "description": "The claim ID to retrieve",
+                "required": true
+              },
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "defenseCounselId",
+                "description": "The ID of the defense counsel to retrieve",
+                "required": true
+              }
+            ]
+          }
+        },
+        "/claim/{claimId}/dockets": {
+          "get": {
+            "operationId": "getDockets",
+            "tags": [
+              "Claims"
+            ],
+            "summary": "Retrieve dockets for a claim",
+            "parameters": [
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "claimId",
+                "description": "The claim ID to retrieve",
+                "required": true
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "success"
+              }
+            }
+          }
+        },
+        "/claims/{claimId}/dockets/{docketId}": {
+          "get": {
+            "operationId": "getDocket",
+            "tags": [
+              "Claims"
+            ],
+            "summary": "Retrieve a claim",
+            "parameters": [
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "claimId",
+                "description": "The claim ID to retrieve",
+                "required": true
+              },
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "docketId",
+                "description": "The docket ID related to the claim to retrieve",
+                "required": true
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "date": {
+                          "type": "string",
+                          "format": "date"
+                        },
+                        "amount": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/claims/{claimId}/dockets": {
+      "paths": {
+        "/claims/{claimId}/insureds": {
+          "get": {
+            "operationId": "getInsureds",
+            "tags": [
+              "Claims"
+            ],
+            "summary": "Retrieve insureds for a claim",
+            "parameters": [
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "claimId",
+                "description": "The claim ID to retrieve",
+                "required": true
+              }
+            ]
+          }
+        },
+        "/claims/{claimId}/insureds/{insuredId}": {
+          "get": {
+            "operationId": "getInsured",
+            "tags": [
+              "Claims"
+            ],
+            "summary": "Retrieve an insured for a claim",
+            "parameters": [
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "claimId",
+                "description": "The claim ID to retrieve",
+                "required": true
+              },
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "insuredId",
+                "description": "The insured ID to retrieve",
+                "required": true
+              }
+            ]
+          }
+        },
+        "/claims/{claimId}/defensecounsels": {
+          "get": {
+            "operationId": "getDefenseCounsels",
+            "tags": [
+              "Claims"
+            ],
+            "summary": "Retrieve defense counsels for a claim",
+            "parameters": [
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "claimId",
+                "description": "The claim ID to retrieve",
+                "required": true
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "success"
+              }
+            }
+          }
+        },
+        "/claims/{claimId}/defensecounsels/{defenseCounselId}": {
+          "get": {
+            "operationId": "getDefenseCounsel",
+            "tags": [
+              "Claims"
+            ],
+            "summary": "Retrieve a defense counsel for a claim",
+            "parameters": [
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "claimId",
+                "description": "The claim ID to retrieve",
+                "required": true
+              },
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "defenseCounselId",
+                "description": "The ID of the defense counsel to retrieve",
+                "required": true
+              }
+            ]
+          }
+        },
+        "/claim/{claimId}/dockets": {
+          "get": {
+            "operationId": "getDockets",
+            "tags": [
+              "Claims"
+            ],
+            "summary": "Retrieve dockets for a claim",
+            "parameters": [
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "claimId",
+                "description": "The claim ID to retrieve",
+                "required": true
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "success"
+              }
+            }
+          }
+        },
+        "/claims/{claimId}/dockets/{docketId}": {
+          "get": {
+            "operationId": "getDocket",
+            "tags": [
+              "Claims"
+            ],
+            "summary": "Retrieve a claim",
+            "parameters": [
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "claimId",
+                "description": "The claim ID to retrieve",
+                "required": true
+              },
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "docketId",
+                "description": "The docket ID related to the claim to retrieve",
+                "required": true
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "date": {
+                          "type": "string",
+                          "format": "date"
+                        },
+                        "amount": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Claim": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "number": {
+            "type": "string",
+            "nullable": true
+          },
+          "isuClaimNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "fileLocationNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "fileLocationName": {
+            "type": "string",
+            "nullable": true
+          },
+          "stateFund": {
+            "type": "string",
+            "nullable": true
+          },
+          "memberCompanyCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "memberCompanyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "date": {
+            "type": "date",
+            "nullable": true
+          },
+          "lineOfInsurance": {
+            "type": "string",
+            "nullable": true
+          },
+          "primaryCoverageCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "statusReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "statusDate": {
+            "type": "date",
+            "nullable": true
+          },
+          "weight": {
+            "type": "short",
+            "nullable": true
+          },
+          "policyLevel": {
+            "type": "string",
+            "nullable": true
+          },
+          "excess": {
+            "type": "number",
+            "nullable": true
+          },
+          "singleLimit": {
+            "type": "number",
+            "nullable": true
+          },
+          "splitLimitPerPerson": {
+            "type": "number",
+            "nullable": true
+          },
+          "splitLimitPerOccurrence": {
+            "type": "number",
+            "nullable": true
+          },
+          "networth": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "largeDeductible": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "potentialSubrogation": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "reinsurance": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "secondaryInjury": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "suit": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "aggregatePolicy": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "Pagination": {
+        "type": "object",
+        "properties": {
+          "pageNumber": {
+            "type": "number",
+            "format": "int64"
+          },
+          "pageSize": {
+            "type": "number",
+            "format": "int32"
+          },
+          "total": {
+            "type": "number",
+            "format": "int64"
+          },
+          "count": {
+            "type": "number",
+            "format": "int32"
+          }
+        }
+      },
+      "ErrorMessage": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "code": "987654",
+          "message": "An error has occurred."
+        }
+      },
+      "ErrorResponse": {
+        "type": "array",
+        "items": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/ErrorMessage"
+            }
+          ]
+        }
+      },
+      "HAL_Link": {
+        "type": "object",
+        "properties": {
+          "templated": {
+            "type": "boolean"
+          },
+          "type": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "profile": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "hreflang": {
+            "type": "string"
+          }
+        }
+      },
+      "HAL_Resource": {
+        "type": "object",
+        "properties": {
+          "_links": {}
+        }
+      },
+      "HAL_Response": {
+        "type": "object",
+        "properties": {
+          "_links": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/HAL_Link"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "HAL_PaginatedResponse": {
+        "type": "object",
+        "properties": {
+          "_embedded": {
+            "type": "array",
+            "items": {}
+          },
+          "_links": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/HAL_Link"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "Response": {
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/ErrorMessage"
+          },
+          {
+            "$ref": "#/components/schemas/PaginatedResponse"
+          },
+          {
+            "$ref": "#/components/schemas/HAL_Response"
+          },
+          {
+            "$ref": "#/components/schemas/HAL_PaginatedResponse"
+          }
+        ]
+      },
+      "PaginatedResponse": {
+        "type": "array",
+        "items": {
+          "anyOf": [
+            {
+              "$ref": "#/components/schemas/ErrorMessage"
+            }
+          ]
+        }
+      },
+      "GetClaimResponse": {
+        "$ref": "#/components/schemas/Claim"
+      }
+    },
+    "securitySchemes": {
+      "apiKey": {
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "header"
+      },
+      "oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "/connect/authorize",
+            "tokenUrl": "/connect/token",
+            "scopes": {}
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "oauth2": [
+        "read_access"
+      ]
+    }
+  ]
+}

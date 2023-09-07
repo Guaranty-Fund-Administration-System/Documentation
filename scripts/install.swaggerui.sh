@@ -1,5 +1,5 @@
 #!/bin/sh
-SWAGGER_UI_VERSION=5.2.0
+SWAGGER_UI_VERSION=5.6.2
 cd ..
 rm -rf ./api
 rm -rf swagger-ui-*/

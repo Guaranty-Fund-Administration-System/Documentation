@@ -15,19 +15,446 @@
   },
   "servers": [
     {
-      "url": "https://api.dev.gfas.app"
+      "url": "https://localhost:9999"
     },
     {
-      "url": "https://api.dev.gfas.app.localhost:9999"
+      "url": "https://api.dev.gfas.app"
     }
   ],
   "tags": [
     {
+      "name": "accounting",
+      "description": "Accounting"
+    },
+    {
+      "name": "assessments",
+      "description": "Assessments"
+    },
+    {
+      "name": "banks",
+      "description": "Banks"
+    },
+    {
+      "name": "bills",
+      "description": "Bills"
+    },
+    {
+      "name": "cbns",
+      "description": "Correspondence Batch Numbers (CBNs)"
+    },
+    {
       "name": "claims",
       "description": "Claims"
+    },
+    {
+      "name": "claimants",
+      "description": "Claimants"
+    },
+    {
+      "name": "contacts",
+      "description": "Contacts"
+    },
+    {
+      "name": "departments",
+      "description": "Departments"
+    },
+    {
+      "name": "diaries",
+      "description": "Diaries"
+    },
+    {
+      "name": "documents",
+      "description": "Documents"
+    },
+    {
+      "name": "entities",
+      "description": "Entities"
+    },
+    {
+      "name": "exports",
+      "description": "Exports"
+    },
+    {
+      "name": "faxes",
+      "description": "Faxes"
+    },
+    {
+      "name": "files",
+      "description": "Files"
+    },
+    {
+      "name": "financecompanies",
+      "description": "Finance Companies"
+    },
+    {
+      "name": "fixits",
+      "description": "FixIts"
+    },
+    {
+      "name": "forms",
+      "description": "Forms"
+    },
+    {
+      "name": "imports",
+      "description": "Imports"
+    },
+    {
+      "name": "inquiries",
+      "description": "Inquiries"
+    },
+    {
+      "name": "insolvencies",
+      "description": "Insolvencies"
+    },
+    {
+      "name": "insureds",
+      "description": "Insureds"
+    },
+    {
+      "name": "liquidators",
+      "description": "Liquidators"
+    },
+    {
+      "name": "lookups",
+      "description": "Lookup Tables"
+    },
+    {
+      "name": "me",
+      "description": "Caller's Account"
+    },
+    {
+      "name": "members",
+      "description": "Members"
+    },
+    {
+      "name": "networth",
+      "description": "Net Worth"
+    },
+    {
+      "name": "payments",
+      "description": "Payments"
+    },
+    {
+      "name": "printers",
+      "description": "Printers"
+    },
+    {
+      "name": "providers",
+      "description": "Providers"
+    },
+    {
+      "name": "recoveries",
+      "description": "Recoveries"
+    },
+    {
+      "name": "reports",
+      "description": "Reports"
+    },
+    {
+      "name": "statefunds",
+      "description": "State Funds"
+    },
+    {
+      "name": "templates",
+      "description": "Templates"
+    },
+    {
+      "name": "tins",
+      "description": "Taxpayer Identification Numbers (TINs)"
+    },
+    {
+      "name": "transactions",
+      "description": "Transactions"
+    },
+    {
+      "name": "ui",
+      "description": "User Interface"
+    },
+    {
+      "name": "uep",
+      "description": "Unearned Premiums"
+    },
+    {
+      "name": "system",
+      "description": "System"
+    },
+    {
+      "name": "webhooks",
+      "description": "Webhooks"
     }
   ],
   "paths": {
+    "/banks": {
+      "get": {
+        "operationId": "getBanks",
+        "tags": [
+          "banks"
+        ],
+        "summary": "Search/retrieve banks",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The ID of the CBN to retrieve"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "The expand query parameter requests embedded resources be added to a response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "style": "simple",
+            "explode": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HAL_PaginatedResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "$ref": "#/paths/~1cbns/get/responses/200/content/application~1json/schema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/bills": {
+      "get": {
+        "operationId": "getBills",
+        "tags": [
+          "bills"
+        ],
+        "summary": "Search/retrieve bills",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The ID of the CBN to retrieve"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "The expand query parameter requests embedded resources be added to a response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "style": "simple",
+            "explode": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HAL_PaginatedResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "$ref": "#/paths/~1cbns/get/responses/200/content/application~1json/schema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cbns": {
+      "get": {
+        "operationId": "getCbns",
+        "tags": [
+          "cbns"
+        ],
+        "summary": "Search/retrieve Correspondence Batch Numbers (CBNs)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The ID of the CBN to retrieve"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "The expand query parameter requests embedded resources be added to a response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "style": "simple",
+            "explode": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HAL_PaginatedResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int32",
+                      "nullable": true
+                    },
+                    "number": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "isuClaimNumber": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "fileLocationNumber": {
+                      "type": "integer",
+                      "format": "int32",
+                      "nullable": true
+                    },
+                    "fileLocationName": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "stateFund": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "memberCompanyCode": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "memberCompanyName": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "type": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "date": {
+                      "type": "date",
+                      "nullable": true
+                    },
+                    "lineOfInsurance": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "primaryCoverageCode": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "status": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "statusReason": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "statusDate": {
+                      "type": "date",
+                      "nullable": true
+                    },
+                    "weight": {
+                      "type": "short",
+                      "nullable": true
+                    },
+                    "policyLevel": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "excess": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "singleLimit": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "splitLimitPerPerson": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "splitLimitPerOccurrence": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "networth": {
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    "largeDeductible": {
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    "potentialSubrogation": {
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    "reinsurance": {
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    "secondaryInjury": {
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    "suit": {
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    "aggregatePolicy": {
+                      "type": "boolean",
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/claims": {
       "get": {
         "operationId": "getClaims",
@@ -148,6 +575,203 @@
                 },
                 "example": {
                   "id": 123456
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/claims/{claimId}/bills": {
+      "paths": {
+        "/claims/{claimId}/bills": {
+          "get": {
+            "operationId": "getClaimBills",
+            "tags": [
+              "Claims"
+            ],
+            "summary": "Search/retrieve claim bills",
+            "parameters": [
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "claimId",
+                "description": "The claim ID to retrieve",
+                "required": true
+              }
+            ]
+          }
+        },
+        "/claims/{claimId}/insureds/{insuredId}": {
+          "get": {
+            "operationId": "getInsured",
+            "tags": [
+              "Claims"
+            ],
+            "summary": "Retrieve an insured for a claim",
+            "parameters": [
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "claimId",
+                "description": "The claim ID to retrieve",
+                "required": true
+              },
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "insuredId",
+                "description": "The insured ID to retrieve",
+                "required": true
+              }
+            ]
+          }
+        },
+        "/claims/{claimId}/defensecounsels": {
+          "get": {
+            "operationId": "getDefenseCounsels",
+            "tags": [
+              "Claims"
+            ],
+            "summary": "Retrieve defense counsels for a claim",
+            "parameters": [
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "claimId",
+                "description": "The claim ID to retrieve",
+                "required": true
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "success"
+              }
+            }
+          }
+        },
+        "/claims/{claimId}/defensecounsels/{defenseCounselId}": {
+          "get": {
+            "operationId": "getDefenseCounsel",
+            "tags": [
+              "Claims"
+            ],
+            "summary": "Retrieve a defense counsel for a claim",
+            "parameters": [
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "claimId",
+                "description": "The claim ID to retrieve",
+                "required": true
+              },
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "defenseCounselId",
+                "description": "The ID of the defense counsel to retrieve",
+                "required": true
+              }
+            ]
+          }
+        },
+        "/claim/{claimId}/dockets": {
+          "get": {
+            "operationId": "getDockets",
+            "tags": [
+              "Claims"
+            ],
+            "summary": "Retrieve dockets for a claim",
+            "parameters": [
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "claimId",
+                "description": "The claim ID to retrieve",
+                "required": true
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "success"
+              }
+            }
+          }
+        },
+        "/claims/{claimId}/dockets/{docketId}": {
+          "get": {
+            "operationId": "getDocket",
+            "tags": [
+              "Claims"
+            ],
+            "summary": "Retrieve a claim",
+            "parameters": [
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "claimId",
+                "description": "The claim ID to retrieve",
+                "required": true
+              },
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "docketId",
+                "description": "The docket ID related to the claim to retrieve",
+                "required": true
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "date": {
+                          "type": "string",
+                          "format": "date"
+                        },
+                        "amount": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -524,24 +1148,1217 @@
                 "content": {
                   "application/json": {
                     "schema": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "integer"
-                        },
-                        "name": {
-                          "type": "string"
-                        },
-                        "date": {
-                          "type": "string",
-                          "format": "date"
-                        },
-                        "amount": {
-                          "type": "number"
-                        }
-                      }
+                      "$ref": "#/paths/~1claims~1%7BclaimId%7D~1bills/paths/~1claims~1%7BclaimId%7D~1dockets~1%7BdocketId%7D/get/responses/200/content/application~1json/schema"
                     }
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/claims/{claimId}/exports": {
+      "paths": {
+        "/claims/{claimId}/exports": {
+          "get": {
+            "operationId": "getClaimExports",
+            "tags": [
+              "Claims"
+            ],
+            "summary": "Retrieve insureds for a claim",
+            "parameters": [
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "claimId",
+                "description": "The claim ID to retrieve",
+                "required": true
+              }
+            ]
+          }
+        },
+        "/claims/{claimId}/exports/{exportId}": {
+          "get": {
+            "operationId": "getClaimExport",
+            "tags": [
+              "Claims"
+            ],
+            "summary": "Retrieve an insured for a claim",
+            "parameters": [
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "claimId",
+                "description": "The claim ID to retrieve",
+                "required": true
+              },
+              {
+                "schema": {
+                  "format": "int32",
+                  "type": "integer"
+                },
+                "in": "query",
+                "name": "insuredId",
+                "description": "The insured ID to retrieve",
+                "required": true
+              }
+            ]
+          }
+        }
+      }
+    },
+    "/claims/{claimId}/exports/{exportId}": {
+      "get": {
+        "operationId": "getClaimExport",
+        "tags": [
+          "claims"
+        ],
+        "summary": "Retrieve export",
+        "parameters": [
+          {
+            "name": "claimId",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The claim ID to retrieve"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "The expand query parameter requests embedded resources be added to a response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "insured"
+                ],
+                "minItems": 1
+              },
+              "style": "simple",
+              "explode": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HAL_Response"
+                },
+                "example": {
+                  "_links": {},
+                  "_embedded": {},
+                  "id": 123456
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Claim"
+                },
+                "example": {
+                  "id": 123456
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/claims/{claimId}/payments": {
+      "get": {
+        "operationId": "getClaimsPayments",
+        "tags": [
+          "claims"
+        ],
+        "summary": "Search/retrieve claim payments",
+        "parameters": [
+          {
+            "name": "claimId",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The claim ID to retrieve"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "The expand query parameter requests embedded resources be added to a response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "insured"
+                ],
+                "minItems": 1
+              },
+              "style": "simple",
+              "explode": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HAL_Response"
+                },
+                "example": {
+                  "_links": {},
+                  "_embedded": {},
+                  "id": 123456
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Claim"
+                },
+                "example": {
+                  "id": 123456
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/claims/{claimId}/statuscalls": {
+      "get": {
+        "operationId": "getClaimStatusCall",
+        "tags": [
+          "claims"
+        ],
+        "summary": "Retrieve claim",
+        "parameters": [
+          {
+            "name": "claimId",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The claim ID to retrieve"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "The expand query parameter requests embedded resources be added to a response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "insured"
+                ],
+                "minItems": 1
+              },
+              "style": "simple",
+              "explode": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HAL_Response"
+                },
+                "example": {
+                  "_links": {},
+                  "_embedded": {},
+                  "id": 123456
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Claim"
+                },
+                "example": {
+                  "id": 123456
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contacts": {
+      "get": {
+        "operationId": "getContacts",
+        "tags": [
+          "contacts"
+        ],
+        "summary": "Search/retrieve contacts",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The ID of the CBN to retrieve"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "The expand query parameter requests embedded resources be added to a response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "style": "simple",
+            "explode": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HAL_PaginatedResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "$ref": "#/paths/~1cbns/get/responses/200/content/application~1json/schema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contacts/{contactId}": {
+      "get": {
+        "operationId": "getContact",
+        "tags": [
+          "contacts"
+        ],
+        "summary": "Retrieve contact",
+        "parameters": [
+          {
+            "name": "claimId",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The claim ID to retrieve"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "The expand query parameter requests embedded resources be added to a response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "insured"
+                ],
+                "minItems": 1
+              },
+              "style": "simple",
+              "explode": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HAL_Response"
+                },
+                "example": {
+                  "_links": {},
+                  "_embedded": {},
+                  "id": 123456
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Claim"
+                },
+                "example": {
+                  "id": 123456
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/departments": {
+      "get": {
+        "operationId": "getDepartments",
+        "tags": [
+          "departments"
+        ],
+        "summary": "Search/list departments",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HAL_PaginatedResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/faxes": {
+      "get": {
+        "operationId": "getFaxes",
+        "tags": [
+          "faxes"
+        ],
+        "summary": "Search/retrieve faxes",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The ID of the CBN to retrieve"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "The expand query parameter requests embedded resources be added to a response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "style": "simple",
+            "explode": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HAL_PaginatedResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "$ref": "#/paths/~1cbns/get/responses/200/content/application~1json/schema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/faxes/{faxId}": {
+      "get": {
+        "operationId": "getFax",
+        "tags": [
+          "faxes"
+        ],
+        "summary": "Retrieve fax",
+        "parameters": [
+          {
+            "name": "claimId",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The claim ID to retrieve"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "The expand query parameter requests embedded resources be added to a response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "insured"
+                ],
+                "minItems": 1
+              },
+              "style": "simple",
+              "explode": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HAL_Response"
+                },
+                "example": {
+                  "_links": {},
+                  "_embedded": {},
+                  "id": 123456
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Claim"
+                },
+                "example": {
+                  "id": 123456
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/inquiries": {
+      "get": {
+        "operationId": "getCalls",
+        "tags": [
+          "inquiries"
+        ],
+        "summary": "Search/list calls",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HAL_PaginatedResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/insolvencies": {
+      "get": {
+        "operationId": "getDepartments",
+        "tags": [
+          "insolvencies"
+        ],
+        "summary": "Search/list departments",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HAL_PaginatedResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/members": {
+      "get": {
+        "operationId": "getContacts",
+        "tags": [
+          "members"
+        ],
+        "summary": "Search/retrieve members",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The ID of the CBN to retrieve"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "The expand query parameter requests embedded resources be added to a response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "style": "simple",
+            "explode": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HAL_PaginatedResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "$ref": "#/paths/~1cbns/get/responses/200/content/application~1json/schema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/members/{memberId}": {
+      "$ref": "#/paths/~1members"
+    },
+    "/providers": {
+      "get": {
+        "operationId": "getProviders",
+        "tags": [
+          "providers"
+        ],
+        "summary": "Search Correspondence Batch Numbers (CBNs)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The ID of the CBN to retrieve"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "The expand query parameter requests embedded resources be added to a response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "style": "simple",
+            "explode": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HAL_PaginatedResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "$ref": "#/paths/~1cbns/get/responses/200/content/application~1json/schema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/providers/{providerId}": {
+      "get": {
+        "operationId": "getProvider",
+        "tags": [
+          "providers"
+        ],
+        "summary": "Search Correspondence Batch Numbers (CBNs)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The ID of the CBN to retrieve"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "The expand query parameter requests embedded resources be added to a response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "style": "simple",
+            "explode": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HAL_PaginatedResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "$ref": "#/paths/~1cbns/get/responses/200/content/application~1json/schema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/providers/{providerId}/bills": {
+      "get": {
+        "operationId": "getProviderBills",
+        "tags": [
+          "providers"
+        ],
+        "summary": "Retrieve claim",
+        "parameters": [
+          {
+            "name": "claimId",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The claim ID to retrieve"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "The expand query parameter requests embedded resources be added to a response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "insured"
+                ],
+                "minItems": 1
+              },
+              "style": "simple",
+              "explode": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HAL_Response"
+                },
+                "example": {
+                  "_links": {},
+                  "_embedded": {},
+                  "id": 123456
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Claim"
+                },
+                "example": {
+                  "id": 123456
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/providers/{providerId}/payments": {
+      "get": {
+        "operationId": "getProviderPayments",
+        "tags": [
+          "providers"
+        ],
+        "summary": "Retrieve claim",
+        "parameters": [
+          {
+            "name": "claimId",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The claim ID to retrieve"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "The expand query parameter requests embedded resources be added to a response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "insured"
+                ],
+                "minItems": 1
+              },
+              "style": "simple",
+              "explode": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HAL_Response"
+                },
+                "example": {
+                  "_links": {},
+                  "_embedded": {},
+                  "id": 123456
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Claim"
+                },
+                "example": {
+                  "id": 123456
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/providers/{providerId}/statuscalls": {
+      "get": {
+        "operationId": "getProviderStatusCall",
+        "tags": [
+          "providers"
+        ],
+        "summary": "Retrieve claim",
+        "parameters": [
+          {
+            "name": "claimId",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The claim ID to retrieve"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "The expand query parameter requests embedded resources be added to a response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "insured"
+                ],
+                "minItems": 1
+              },
+              "style": "simple",
+              "explode": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HAL_Response"
+                },
+                "example": {
+                  "_links": {},
+                  "_embedded": {},
+                  "id": 123456
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Claim"
+                },
+                "example": {
+                  "id": 123456
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/system/logs": {
+      "get": {
+        "operationId": "getSystemLogs",
+        "tags": [
+          "system"
+        ],
+        "summary": "Search/retrieve system logs",
+        "parameters": [
+          {
+            "name": "claimId",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "deprecated": true,
+            "description": "The claim ID to retrieve"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "The expand query parameter requests embedded resources be added to a response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "insured"
+                ],
+                "minItems": 1
+              },
+              "style": "simple",
+              "explode": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HAL_Response"
+                },
+                "example": {
+                  "_links": {},
+                  "_embedded": {},
+                  "id": 123456
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Claim"
+                },
+                "example": {
+                  "id": 123456
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/system/tasks": {
+      "get": {
+        "operationId": "getSystemTasks",
+        "tags": [
+          "system"
+        ],
+        "summary": "Search/retrieve system tasks",
+        "parameters": [
+          {
+            "name": "claimId",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "deprecated": true,
+            "description": "The claim ID to retrieve"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "The expand query parameter requests embedded resources be added to a response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "insured"
+                ],
+                "minItems": 1
+              },
+              "style": "simple",
+              "explode": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HAL_Response"
+                },
+                "example": {
+                  "_links": {},
+                  "_embedded": {},
+                  "id": 123456
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Claim"
+                },
+                "example": {
+                  "id": 123456
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/system/trails": {
+      "get": {
+        "operationId": "getSystemAuditTrail",
+        "tags": [
+          "system"
+        ],
+        "summary": "Search/retrieve system API trails",
+        "parameters": [
+          {
+            "name": "claimId",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "deprecated": true,
+            "description": "The claim ID to retrieve"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "The expand query parameter requests embedded resources be added to a response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "insured"
+                ],
+                "minItems": 1
+              },
+              "style": "simple",
+              "explode": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HAL_Response"
+                },
+                "example": {
+                  "_links": {},
+                  "_embedded": {},
+                  "id": 123456
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Claim"
+                },
+                "example": {
+                  "id": 123456
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/system/users": {
+      "get": {
+        "operationId": "getSystemUsers",
+        "tags": [
+          "system"
+        ],
+        "summary": "Search/retrieve system users",
+        "parameters": [
+          {
+            "name": "claimId",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "deprecated": true,
+            "description": "The claim ID to retrieve"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "The expand query parameter requests embedded resources be added to a response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "insured"
+                ],
+                "minItems": 1
+              },
+              "style": "simple",
+              "explode": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HAL_Response"
+                },
+                "example": {
+                  "_links": {},
+                  "_embedded": {},
+                  "id": 123456
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Claim"
+                },
+                "example": {
+                  "id": 123456
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tins": {
+      "get": {
+        "operationId": "getTins",
+        "tags": [
+          "tins"
+        ],
+        "summary": "Search taxpayer identification numbers (TINs)",
+        "parameters": [
+          {
+            "name": "claimId",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "deprecated": true,
+            "description": "The claim ID to retrieve"
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "The expand query parameter requests embedded resources be added to a response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "insured"
+                ],
+                "minItems": 1
+              },
+              "style": "simple",
+              "explode": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HAL_Response"
+                },
+                "example": {
+                  "_links": {},
+                  "_embedded": {},
+                  "id": 123456
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Claim"
+                },
+                "example": {
+                  "id": 123456
                 }
               }
             }
